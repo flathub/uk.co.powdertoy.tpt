@@ -93,6 +93,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        #tag: v94.1
-        commit: ac0bb01dec7bbe15a1fbaddd0683275c617d0caa
+        tag: v95.0
+        commit: d2900760cc3598b280585250fa34d4dc91fcc284
         disable-fsckobjects: true 
