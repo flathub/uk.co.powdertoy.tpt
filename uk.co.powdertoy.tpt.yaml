@@ -15,8 +15,6 @@ finish-args:
   - "--persist=."
 
 modules:
-  - SDL-2.0.10.json
-
   - name: lua51
     sources:
       - type: archive
