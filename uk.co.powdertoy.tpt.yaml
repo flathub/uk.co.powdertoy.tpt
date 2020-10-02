@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '19.08'
+runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
@@ -21,12 +21,12 @@ modules:
     buildsystem: simple
     cleanup: '*'
     build-commands:
-      - python3.7 setup.py install --prefix=/app
+      - python3 setup.py install --prefix=/app
     sources:
       - type: archive
-        url: http://prdownloads.sourceforge.net/scons/scons-3.1.1.tar.gz
-        sha256: 4cea417fdd7499a36f407923d03b4b7000b0f9e8fd7b31b316b9ce7eba9143a5
-  
+        url: http://prdownloads.sourceforge.net/scons/scons-4.0.1.tar.gz
+        sha256: 722ed104b5c624ecdc89bd4e02b094d2b14d99d47b5d0501961e47f579a2007c
+
   - name: fftw3f
     no-autogen: true
     config-opts:
@@ -47,8 +47,8 @@ modules:
 
   - name: powder
     buildsystem: simple
-    build-commands: 
-      - CPPDEFINES="NO_INSTALL_CHECK" CPPPATH='/app/include/' LIBPATH='/app/lib' python3.7 /app/bin/scons $SCONS_FLAGS $SCONS_FLAGS_EXTRA --release -j"${FLATPAK_BUILDER_N_JOBS}" prefix="${FLATPAK_DEST}"
+    build-commands:
+      - CPPDEFINES="NO_INSTALL_CHECK" CPPPATH='/app/include/' LIBPATH='/app/lib' python3 /app/bin/scons $SCONS_FLAGS $SCONS_FLAGS_EXTRA --release -j"${FLATPAK_BUILDER_N_JOBS}" prefix="${FLATPAK_DEST}"
       - install -Dm755 build/powder64 /app/bin/powder
       - install -Dm644 resources/powder.desktop -t /app/share/applications
       - install -Dm644 resources/powder.appdata.xml /app/share/metainfo/powder.appdata.xml
@@ -57,10 +57,10 @@ modules:
       - install -Dm644 resources/icon/powder-32.png /app/share/icons/hicolor/32x32/apps/powder.png
       - install -Dm644 resources/icon/powder-48.png /app/share/icons/hicolor/48x48/apps/powder.png
       - install -Dm644 resources/icon/powder-256.png /app/share/icons/hicolor/256x256/apps/powder.png
-      
+
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
         tag: v95.0
         commit: d2900760cc3598b280585250fa34d4dc91fcc284
-        disable-fsckobjects: true 
+        disable-fsckobjects: true
