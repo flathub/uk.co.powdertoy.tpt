@@ -21,7 +21,11 @@ modules:
     make-install-args:
       - PREFIX=/app
     cleanup:
-      - "/bin"
+      - /bin
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - "*.a"
     sources:
       - type: archive
         url: http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz
@@ -40,6 +44,7 @@ modules:
       - /lib/*.la
       - /lib/pkgconfig
       - /share/man
+      - /share/info
     sources:
     - type: archive
       url: http://www.fftw.org/fftw-3.3.9.tar.gz
@@ -47,9 +52,9 @@ modules:
 
   - name: powder
     buildsystem: meson
-    build-options: 
-      - "--buildtype=release"
-      - install_check=false
+    config-opts: 
+      - --buildtype=release
+      - -Dinstall_check=false
 
     sources:
       - type: git
