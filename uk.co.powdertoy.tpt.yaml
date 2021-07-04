@@ -47,9 +47,9 @@ modules:
 
   - name: powder
     buildsystem: meson
-    build-options: 
-      - "--buildtype=release"
-      - install_check=false
+    config-opts: 
+      - --buildtype=release
+      - -Dinstall_check=false
 
     sources:
       - type: git
