@@ -12,7 +12,6 @@ finish-args:
   - "--device=dri"
   - "--socket=wayland"
   - "--share=network"
-  - "--persist=."
 
 modules:
   - name: libluajit
