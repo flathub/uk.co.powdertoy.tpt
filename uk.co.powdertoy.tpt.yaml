@@ -59,8 +59,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: v96.0.346b
-        commit: fb506599c2f40d57c870a0c4e4b238d5954993fa
+        tag: v96.0.347b
+        commit: 37dfe728d0841c7cc84c9c9f4039bcc0229358e3
         disable-fsckobjects: true
     post-install: 
       - install -Dm755 powder /app/bin/powder
