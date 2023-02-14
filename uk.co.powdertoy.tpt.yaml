@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '23.3'
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
@@ -59,8 +59,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: v96.1.349
-        commit: e3c9176277c870179f782465f648d4eb94239399
+        tag: v97.0.352
+        commit: 225293cc8030c4878d4d924eb4513b4a2e284f08
         disable-fsckobjects: true
     post-install: 
       - install -Dm755 powder /app/bin/powder
