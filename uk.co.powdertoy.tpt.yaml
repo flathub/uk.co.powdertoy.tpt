@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '23.3'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
