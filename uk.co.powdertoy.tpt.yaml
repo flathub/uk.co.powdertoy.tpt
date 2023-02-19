@@ -67,6 +67,13 @@ modules:
       - install -Dm644 resources/powder.desktop /app/share/applications/powder.desktop
       - install -Dm644 resources/appdata.xml /app/share/metainfo/powder.appdata.xml
       - install -Dm644 /run/build/powder/resources/icon_exe.svg /app/share/icons/hicolor/scalable/apps/powder.svg
-
+      - |
+        set -e
+        VERSION=v97.0.352
+        DATE=$(date -d @$(git show -s --format=%ct) +'%Y-%m-%d')
+        sed \
+          -e "s/SUBST_SAVE_VERSION.SUBST_MINOR_VERSION.SUBST_BUILD_NUM/${VERSION}/g" \
+          -e "s/SUBST_DATE/${DATE}/g" \
+          -i "/app/share/metainfo/powder.appdata.xml"
     modules:
       - dependencies/jsoncpp.yml
