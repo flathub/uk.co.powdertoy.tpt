@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
@@ -47,8 +47,8 @@ modules:
       - /share/info
     sources:
     - type: archive
-      url: http://www.fftw.org/fftw-3.3.9.tar.gz
-      sha256: bf2c7ce40b04ae811af714deb512510cc2c17b9ab9d6ddcf49fe4487eea7af3d
+      url: http://www.fftw.org/fftw-3.3.10.tar.gz
+      sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: powder
     buildsystem: meson
@@ -59,15 +59,21 @@ modules:
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: v96.1.349
-        commit: e3c9176277c870179f782465f648d4eb94239399
+        tag: v97.0.352
+        commit: 225293cc8030c4878d4d924eb4513b4a2e284f08
         disable-fsckobjects: true
     post-install: 
       - install -Dm755 powder /app/bin/powder
-      - install -Dm644 /run/build/powder/resources/powder.desktop -t /app/share/applications
-      - install -Dm644 /run/build/powder/resources/powder.appdata.xml /app/share/metainfo/powder.appdata.xml
-      - install -Dm644 /run/build/powder/resources/icon/powder-16.png /app/share/icons/hicolor/16x16/apps/powder.png
-      - install -Dm644 /run/build/powder/resources/icon/powder-24.png /app/share/icons/hicolor/24x24/apps/powder.png
-      - install -Dm644 /run/build/powder/resources/icon/powder-32.png /app/share/icons/hicolor/32x32/apps/powder.png
-      - install -Dm644 /run/build/powder/resources/icon/powder-48.png /app/share/icons/hicolor/48x48/apps/powder.png
-      - install -Dm644 /run/build/powder/resources/icon/powder-256.png /app/share/icons/hicolor/256x256/apps/powder.png
+      - install -Dm644 resources/powder.desktop /app/share/applications/powder.desktop
+      - install -Dm644 resources/appdata.xml /app/share/metainfo/powder.appdata.xml
+      - install -Dm644 /run/build/powder/resources/icon_exe.svg /app/share/icons/hicolor/scalable/apps/powder.svg
+      - |
+        set -e
+        VERSION=v97.0.352
+        DATE=$(date -d @$(git show -s --format=%ct) +'%Y-%m-%d')
+        sed \
+          -e "s/SUBST_SAVE_VERSION.SUBST_MINOR_VERSION.SUBST_BUILD_NUM/${VERSION}/g" \
+          -e "s/SUBST_DATE/${DATE}/g" \
+          -i "/app/share/metainfo/powder.appdata.xml"
+    modules:
+      - dependencies/jsoncpp.yml
