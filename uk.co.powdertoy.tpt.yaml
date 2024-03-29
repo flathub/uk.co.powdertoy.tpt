@@ -57,6 +57,7 @@ modules:
         set -e
         sed \
           -e "s/<screenshot>/<screenshot type=\"default\">/g" \
+          -e "s/<\/releases>/<\/releases> <developer_name>The Powder Toy Community<\/developer_name> /g" \
           -i "/app/share/metainfo/powder.appdata.xml"
     modules:
       - dependencies/jsoncpp.yml
