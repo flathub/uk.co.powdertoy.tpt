@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
@@ -15,13 +15,13 @@ finish-args:
 
 modules:
   - shared-modules/luajit/luajit.json
-  
+
   - name: fftw3f
     no-autogen: true
     config-opts:
-    - --enable-shared
-    - --enable-threads
-    - --enable-float
+      - --enable-shared
+      - --enable-threads
+      - --enable-float
     cleanup:
       - /bin
       - /include
@@ -31,13 +31,13 @@ modules:
       - /share/man
       - /share/info
     sources:
-    - type: archive
-      url: http://www.fftw.org/fftw-3.3.10.tar.gz
-      sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
+      - type: archive
+        url: http://www.fftw.org/fftw-3.3.10.tar.gz
+        sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: powder
     buildsystem: meson
-    config-opts: 
+    config-opts:
       - --buildtype=release
       - -Dcan_install=no
 
@@ -47,7 +47,7 @@ modules:
         tag: v98.0.363
         commit: 7edc413cdcb3f996b9e9b5474795c15b5f476200
         disable-fsckobjects: true
-    post-install: 
+    post-install:
       - install -Dm755 powder /app/bin/powder
       - install -Dm644 resources/powder.desktop /app/share/applications/powder.desktop
       - install -Dm644 resources/appdata.xml /app/share/metainfo/powder.appdata.xml
