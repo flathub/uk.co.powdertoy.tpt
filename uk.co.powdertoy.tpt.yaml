@@ -1,6 +1,6 @@
 app-id: uk.co.powdertoy.tpt
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 command: powder
 rename-icon: powder
@@ -8,20 +8,20 @@ rename-desktop-file: powder.desktop
 rename-appdata-file: powder.appdata.xml
 finish-args:
   - "--share=ipc"
-  - "--socket=x11"
+  - "--socket=fallback-x11"
   - "--device=dri"
   - "--socket=wayland"
   - "--share=network"
 
 modules:
   - shared-modules/luajit/luajit.json
-  
+
   - name: fftw3f
     no-autogen: true
     config-opts:
-    - --enable-shared
-    - --enable-threads
-    - --enable-float
+      - --enable-shared
+      - --enable-threads
+      - --enable-float
     cleanup:
       - /bin
       - /include
@@ -31,34 +31,33 @@ modules:
       - /share/man
       - /share/info
     sources:
-    - type: archive
-      url: http://www.fftw.org/fftw-3.3.10.tar.gz
-      sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
+      - type: archive
+        url: http://www.fftw.org/fftw-3.3.10.tar.gz
+        sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
 
   - name: powder
     buildsystem: meson
-    config-opts: 
+    config-opts:
       - --buildtype=release
       - -Dcan_install=no
+      - -Dmanifest_date=2024-03-27
 
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: snapshot-253
-        commit: b7a6663e08929c471571b709e21eee9d26b7b848
+        tag: v98.0.363
+        commit: 7edc413cdcb3f996b9e9b5474795c15b5f476200
         disable-fsckobjects: true
-    post-install: 
+    post-install:
       - install -Dm755 powder /app/bin/powder
       - install -Dm644 resources/powder.desktop /app/share/applications/powder.desktop
       - install -Dm644 resources/appdata.xml /app/share/metainfo/powder.appdata.xml
       - install -Dm644 /run/build/powder/resources/icon_exe.svg /app/share/icons/hicolor/scalable/apps/powder.svg
       - |
         set -e
-        VERSION=snapshot-253
-        DATE=$(date -d @$(git show -s --format=%ct) +'%Y-%m-%d')
         sed \
-          -e "s/SUBST_SAVE_VERSION.SUBST_MINOR_VERSION.SUBST_BUILD_NUM/${VERSION}/g" \
-          -e "s/SUBST_DATE/${DATE}/g" \
+          -e "s/<screenshot>/<screenshot type=\"default\">/g" \
+          -e "s/<\/releases>/<\/releases> <developer_name>The Powder Toy Community<\/developer_name> /g" \
           -i "/app/share/metainfo/powder.appdata.xml"
     modules:
       - dependencies/jsoncpp.yml
