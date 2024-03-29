@@ -40,6 +40,7 @@ modules:
     config-opts:
       - --buildtype=release
       - -Dcan_install=no
+      - -Dmanifest_date=2024-03-27
 
     sources:
       - type: git
@@ -54,11 +55,8 @@ modules:
       - install -Dm644 /run/build/powder/resources/icon_exe.svg /app/share/icons/hicolor/scalable/apps/powder.svg
       - |
         set -e
-        VERSION=v98.0.363
-        DATE=$(date -d @$(git show -s --format=%ct) +'%Y-%m-%d')
         sed \
-          -e "s/SUBST_SAVE_VERSION.SUBST_MINOR_VERSION.SUBST_BUILD_NUM/${VERSION}/g" \
-          -e "s/SUBST_DATE/${DATE}/g" \
+          -e "s/<screenshot>/<screenshot type=\"default\">/g" \
           -i "/app/share/metainfo/powder.appdata.xml"
     modules:
       - dependencies/jsoncpp.yml
