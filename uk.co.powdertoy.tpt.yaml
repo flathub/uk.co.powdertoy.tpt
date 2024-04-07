@@ -40,13 +40,13 @@ modules:
     config-opts:
       - --buildtype=release
       - -Dcan_install=no
-      - -Dmanifest_date=2024-03-27
+      - -Dmanifest_date=2024-04-02
 
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: v98.0.363
-        commit: 7edc413cdcb3f996b9e9b5474795c15b5f476200
+        tag: v98.2.365
+        commit: e371d6345b620e961417f0950d19f7df525df7dd
         disable-fsckobjects: true
     post-install:
       - install -Dm755 powder /app/bin/powder
