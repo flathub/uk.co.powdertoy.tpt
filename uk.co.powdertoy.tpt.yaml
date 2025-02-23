@@ -40,12 +40,12 @@ modules:
     config-opts:
       - --buildtype=release
       - -Dcan_install=no
-      - -Dmanifest_date=2025-12-05
+      - -Dmanifest_date=2025-02-22
 
     sources:
       - type: git
         url: https://github.com/The-Powder-Toy/The-Powder-Toy.git
-        tag: v99.2.382
+        tag: v99.3.384
         commit: 1b900031f6943c8667705e4992e0bb2f3f131ce4
         disable-fsckobjects: true
     post-install:
